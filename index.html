@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src ="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.60.0/phaser.js" integrity="sha512-H05oT7BAjM9Ai1IaFX9zr61NtE2e1P0MkTz3AZXBnseaJSAOt2FGMFJ+vVGutaJxEGA1jxUiYsTBYQNE08/Erw==" crossorigin="anonymous" referrerpolicy="no-referrer">    </script>
+    <script>
+        class Intro extends Phaser.Scene{
+            constructor(){
+                super('intro');
+            }
+            preload(){
+                this.load.path = './assets/',
+                this.load.image('food2'),
+                this.load.image('food1'),
+                this.load.image('simba1'),
+                this.load.image('background1'),
+                this.load.image('simba2'),
+                this.load.image('simba3'),
+                this.load.image('drink1'),
+                this.load.image('food3'),
+                this.load.image('logotype')
+                
+            }
+            create(){
+                this.creme = this.add.image(400,400, 'food2'); //adding creme puff
+                this.creme.setScale(0.05);
+                this.tweens.add({ //bob up and down
+                    targets: this.creme,
+                    x:400,
+                    y:385,
+                    duration: 2000,
+                    ease:'Linear',
+                    repeat:-1,
+                    yoyo: true,
+                });
+                this.add.text(200,500,"Click the creme puff to begin your Journey.");
+                this.add.text(170,550,"In later slides, click Simba(the dog) to continue!");
+                this.creme.setInteractive();
+                this.creme.on('pointerdown', () => this.scene.start('body1'));
+                
+                
+
+
+            }
+        }
+
+        class Body1 extends Phaser.Scene{
+            constructor(){
+                super('body1');
+            }
+            
+            create(){
+                this.t1 = this.add.text(100,200,
+`In a world where dogs are hungry...
+One dog has different plants...
+Simba is here to change the game forever...
+`);
+                this.t1.setScale(1.60);
+
+                
+                this.tweens.add({
+                    targets: this.t1,
+                    alpha:{from:0, to:1},
+                    ease:'Linear',
+                    duration:5000,
+                    repeat:0,
+                });
+                
+                /*this.t2 = this.add.text(400,400,"One dog has different plans...");
+                this.tweens.add({
+                    targets: this.t2,
+                    alpha:{from:0, to:1},
+                    ease:'Linear',
+                    duration:15000,
+                    repeat:0,
+                });*/
+                this.simba1 = this.add.image(-100,600,'simba1');
+                this.tweens.add({
+                    targets:this.simba1,
+                    x:750,
+                    y:600,
+                    duration:7000,
+                    ease:'Linear',
+                    repeat:0,
+                });
+                //this.background1 = game.add.sprite(0,0,'background1').setOrigin(.5,.5);
+                this.cameras.main.setBackgroundColor('0xadd8e6');
+                this.simba1.setScale(.05);
+                this.simba1.setInteractive();
+                this.simba1.on('pointerdown', () => this.scene.start('body2'));
+                
+                
+            }
+        }
+        
+        class Body2 extends Phaser.Scene{
+            constructor(){
+                super('body2');
+            }
+            create(){
+                this.graphics = this.add.graphics();
+                this.graphics.fillStyle(0xff9900,1);
+                this.graphics.fillEllipse(400,400,400,200,6);
+                this.tweens.add({
+                    targets:this.graphics,
+                    alpha:{from:0, to:1},
+                    ease:'Linear',
+                    duration:5000,
+                    repeat:0,
+                })
+                this.graphics2 = this.add.graphics();
+                this.graphics.fillStyle(0xff9900,1);
+                this.graphics.fillCircle(400,200,100,200);
+                this.poop = this.add.sprite(450,385,'logotype');
+                this.tweens.add({
+                    targets:this.poop,
+                    alpha:{from:0, to:1},
+                    ease:'Linear',
+                    duration:5000,
+                    repeat:0,
+                })
+                this.simba3 = this.add.image(400,900,'simba3');
+                this.simba3.setScale(.08);
+                this.tweens.add({
+                    targets:this.simba3,
+                    x:400,
+                    y:720,
+                    ease:'Linear',
+                    duration:8000,
+                    repeat:0
+                })
+                this.cameras.main.setBackgroundColor('0xadd8e6');
+                this.simba3.setInteractive();
+                this.simba3.on('pointerdown', () => this.scene.start('main'));
+            }
+        }
+        
+        class Main extends Phaser.Scene{
+            constructor(){
+                super('main');
+            }
+            create(){
+                this.simba2 = this.add.image(650,600,'simba2');
+                this.simba2.setScale(0.3);
+                this.cameras.main.setBackgroundColor('0xadd8e6');
+                this.title = this.add.text(50,50,"Cookin' with Simba");
+                this.add.text(75,150,'Play');
+                this.add.text(75,200,'Options');
+                this.add.text(75,250,'Credits');
+                this.chicken = this.add.image(300,300,'food1');
+                this.katsudon = this.add.image(600,300,'food3');
+                this.beer = this.add.image(175,600,'drink1');
+                this.katsudon.setScale(0.08);
+                this.beer.setScale(0.1);
+                this.chicken.setScale(0.05);
+                this.title.setScale(3.5);
+                this.tweens.add({ //bob up and down
+                    targets: this.chicken,
+                    x:300,
+                    y:285,
+                    duration: 2000,
+                    ease:'Linear',
+                    repeat:-1,
+                    yoyo: true,
+                });
+                this.tweens.add({ //bob up and down
+                    targets: this.beer,
+                    x:175,
+                    y:585,
+                    duration: 1500,
+                    ease:'Linear',
+                    repeat:-1,
+                    yoyo: true,
+                });
+                this.tweens.add({ //bob up and down
+                    targets: this.katsudon,
+                    x:600,
+                    y:285,
+                    duration: 1250,
+                    ease:'Linear',
+                    repeat:-1,
+                    yoyo: true,
+                });
+
+            }
+        }
+        
+
+        let game = new Phaser.Game({
+            width:800,
+            height: 800,
+            
+            scene:[Intro,Body1,Body2,Main],
+        });
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
