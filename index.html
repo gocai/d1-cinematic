@@ -13,7 +13,7 @@
             }
             preload(){
                 this.load.path = './assets/',
-                this.load.image('food2'),
+                this.load.image('food2',),
                 this.load.image('food1'),
                 this.load.image('simba1'),
                 this.load.image('background1'),
@@ -21,7 +21,11 @@
                 this.load.image('simba3'),
                 this.load.image('drink1'),
                 this.load.image('food3'),
-                this.load.image('logotype')
+                this.load.image('logotype'),
+                this.load.audio('kizzy','world.mp3');
+                //this.load.audio('onedog',['assets/onedog.mp3']);
+                this.load.audio('kizzy2','eruption.mp3');
+                this.load.audio('kizzy3','presents.mp3');
                 
             }
             create(){
@@ -55,12 +59,11 @@
             create(){
                 this.t1 = this.add.text(100,200,
 `In a world where dogs are hungry...
-One dog has different plants...
+One dog has different plans...
 Simba is here to change the game forever...
 `);
                 this.t1.setScale(1.60);
 
-                
                 this.tweens.add({
                     targets: this.t1,
                     alpha:{from:0, to:1},
@@ -86,6 +89,8 @@ Simba is here to change the game forever...
                     ease:'Linear',
                     repeat:0,
                 });
+                this.intro1 = this.sound.add('kizzy');
+                this.intro1.play();
                 //this.background1 = game.add.sprite(0,0,'background1').setOrigin(.5,.5);
                 this.cameras.main.setBackgroundColor('0xadd8e6');
                 this.simba1.setScale(.05);
@@ -132,6 +137,8 @@ Simba is here to change the game forever...
                     duration:8000,
                     repeat:0
                 })
+                this.intro3 = this.sound.add('kizzy3');
+                this.intro3.play();
                 this.cameras.main.setBackgroundColor('0xadd8e6');
                 this.simba3.setInteractive();
                 this.simba3.on('pointerdown', () => this.scene.start('main'));
@@ -184,7 +191,8 @@ Simba is here to change the game forever...
                     repeat:-1,
                     yoyo: true,
                 });
-
+                this.intro2 = this.sound.add('kizzy2');
+                this.intro2.play();
             }
         }
         

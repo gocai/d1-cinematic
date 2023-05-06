@@ -6,7 +6,12 @@ plenty of images of food and doge
 
 2+ audio assets:
 
-NEED TO IMPLEMENT
+self recorded, including freeuse
+
+The following music was used for this media project:
+Music: Volatile Reaction by Kevin MacLeod
+Free download: https://filmmusic.io/song/5014-volatile-reaction
+License (CC BY 4.0): https://filmmusic.io/standard-license
 
 
 2+ geometric shapes:
